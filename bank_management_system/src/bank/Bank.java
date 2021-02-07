@@ -1,11 +1,14 @@
 package bank;
 
 import exception.InvalidAccountException;
+import exception.InvalidOptionException;
 import model.Account;
 import ui.UserInterfaceHelper;
 import util.AccountUtility;
 
+import javax.management.openmbean.InvalidOpenTypeException;
 import java.awt.desktop.SystemEventListener;
+import java.security.spec.ECField;
 import java.util.HashMap;
 import java.util.Scanner;
 
@@ -45,6 +48,13 @@ public class Bank {
                     alreadyExistingAccountHelper(bankOne);
                     break;
                 default:
+                    try {
+                        throw new InvalidOptionException();
+                    }
+                    catch (Exception e){
+                        System.out.println(e.getMessage());
+                        e.printStackTrace();
+                    }
                     break;
             }
         }
