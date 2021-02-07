@@ -38,8 +38,8 @@ public class Bank {
             switch (status) {
                 // 1 -> make a new account
                 case 1:
-                    Account ac = AccountUtility.makeNewAccount();
-                    bankOne.accountList.put(ac.getId(), ac);
+                    Account accountObj = AccountUtility.makeNewAccount();
+                    bankOne.accountList.put(accountObj.getId(), accountObj);
                     break;
                 // 2 -> already existing account
                 case 2:
@@ -55,19 +55,19 @@ public class Bank {
         System.out.println(UserInterfaceHelper.PROMPT_FOR_ID_INPUT);
         Scanner s = new Scanner(System.in);
         int id = s.nextInt();
-        Account ac = AccountUtility.searchAccount(bankOne, id);
-        if (ac != null) {
+        Account accountObj = AccountUtility.searchAccount(bankOne, id);
+        if (accountObj != null) {
             UserInterfaceHelper.printTextForOption3();
             int option = s.nextInt();
             switch (option) {
                 case 21:
-                    UserInterfaceHelper.takeInputForCredit(ac, bankOne);
+                    UserInterfaceHelper.takeInputForCredit(accountObj, bankOne);
                     break;
                 case 22:
-                    UserInterfaceHelper.takeInputForDebit(ac, bankOne);
+                    UserInterfaceHelper.takeInputForDebit(accountObj, bankOne);
                     break;
                 case 23:
-                    AccountUtility.printDetails(ac);
+                    AccountUtility.printDetails(accountObj);
                     break;
                 default:
                     System.out.println(UserInterfaceHelper.INVALID_OPTION_TEXT);
@@ -87,9 +87,9 @@ public class Bank {
         System.out.println(UserInterfaceHelper.ACCOUNT_SEARCH_TEXT);
         Scanner s = new Scanner(System.in);
         int id = s.nextInt();
-        Account ac = AccountUtility.searchAccount(bankOne, id);
-        if (ac != null) {
-            AccountUtility.printDetails(ac);
+        Account accountObj = AccountUtility.searchAccount(bankOne, id);
+        if (accountObj != null) {
+            AccountUtility.printDetails(accountObj);
         } else {
             try {
                 throw new InvalidAccountException();
