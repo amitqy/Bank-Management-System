@@ -52,7 +52,6 @@ public class Bank {
     }
 
     /***
-     *
      * @param bankOne bank object
      */
 
@@ -89,7 +88,6 @@ public class Bank {
     }
 
     /***
-     *
      * @param bankOne bank object
      */
 

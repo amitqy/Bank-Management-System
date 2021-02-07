@@ -12,7 +12,6 @@ public class AccountUtility {
 
 
     /***
-     *
      * @return Id after generation is returned
      */
     public static int getAccountId() {
@@ -33,7 +32,6 @@ public class AccountUtility {
     }
 
     /***
-     *
      * @param accountObject : The account object
      */
     public static void printDetails(Account accountObject) {
@@ -45,7 +43,6 @@ public class AccountUtility {
     }
 
     /***
-     *
      * @param bank : A bank object representing a Bank
      * @param id : Id associated to a particular account object.
      * @return The Account object is returned after searching the list of all accounts that are made in the bank
@@ -58,7 +55,6 @@ public class AccountUtility {
     }
 
     /***
-     *
      * @param amount The amount is Rupees that is to be credited
      * @param account The account object in which amount has to credited
      */
@@ -70,7 +66,6 @@ public class AccountUtility {
     }
 
     /***
-     *
      * @param amount The amount is Rupees that is to be debited
      * @param account The account object from which amount has to debited
      * @return true if account has sufficient balance to be debited, else return false
