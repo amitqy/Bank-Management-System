@@ -20,7 +20,6 @@ public class Bank {
     }
 
     public static void main(String[] args) {
-        int id;
         int status;
         Bank bankOne = new Bank();
         Scanner s = new Scanner(System.in);
