@@ -15,7 +15,6 @@ public class Account {
     }
 
     /***
-     *
      * @return Returns remaining balance of an account
      */
     public int getRemainingBalance() {
@@ -23,7 +22,6 @@ public class Account {
     }
 
     /***
-     *
      * @return The name of the account holder
      */
     public String getName() {
@@ -31,7 +29,6 @@ public class Account {
     }
 
     /***
-     *
      * @return Is the id of the account holder
      */
     public int getId() {
@@ -39,7 +36,6 @@ public class Account {
     }
 
     /**
-     *
      * @param name It is name of the account holder, that is to be set.
      */
     public void setName(String name) {
@@ -47,7 +43,6 @@ public class Account {
     }
 
     /**
-     *
      * @param remainingBalance It is used to set the remaining balance of an account
      */
     public void setRemainingBalance(int remainingBalance) {
