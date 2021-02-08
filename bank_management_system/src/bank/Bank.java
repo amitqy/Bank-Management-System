@@ -18,7 +18,7 @@ import java.util.Scanner;
 public class Bank {
     public HashMap<Integer, Account> accountList;
 
-    public Bank() {
+    private Bank() {
         accountList = new HashMap<>();
     }
 
@@ -64,7 +64,7 @@ public class Bank {
      * @param bankOne bank object
      */
 
-    public static void alreadyExistingAccountHelper(Bank bankOne) {
+    private static void alreadyExistingAccountHelper(Bank bankOne) {
         System.out.println(UserInterfaceHelper.PROMPT_FOR_ID_INPUT);
         Scanner s = new Scanner(System.in);
         int id = s.nextInt();
@@ -100,7 +100,7 @@ public class Bank {
      * @param bankOne bank object
      */
 
-    public static void accountSearchHelper(Bank bankOne) {
+    private static void accountSearchHelper(Bank bankOne) {
         System.out.println(UserInterfaceHelper.ACCOUNT_SEARCH_TEXT);
         Scanner s = new Scanner(System.in);
         int id = s.nextInt();
