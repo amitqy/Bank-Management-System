@@ -1,6 +1,10 @@
 package util;
 
 import bank.Bank;
+import exception.InsufficientFundException;
+import exception.InvalidAccountException;
+import exception.InvalidOptionException;
+import exception.WrongInputNameException;
 import model.Account;
 import ui.UserInterfaceHelper;
 
@@ -22,13 +26,22 @@ public class AccountUtility {
     /**
      * @return an Account object
      */
-    public static Account makeNewAccount() {
+    public static Account makeNewAccount() throws WrongInputNameException {
         Scanner s = new Scanner(System.in);
         System.out.println(UserInterfaceHelper.ENTER_YOUR_NAME_TEXT);
         name = s.next();
-        id = getAccountId();
-        System.out.println(UserInterfaceHelper.SAVE_FOR_FUTURE_TEXT + id);
-        return new Account(name, id);
+        if(nameValidated(name)) {
+            id = getAccountId();
+            System.out.println(UserInterfaceHelper.SAVE_FOR_FUTURE_TEXT + id);
+            return new Account(name, id);
+        }
+        else {
+            throw new WrongInputNameException();
+        }
+    }
+
+    private static boolean nameValidated(String name) {
+        return name.matches(UserInterfaceHelper.ALPHABET_PATTERN);
     }
 
     /***
@@ -47,11 +60,12 @@ public class AccountUtility {
      * @param id : Id associated to a particular account object.
      * @return The Account object is returned after searching the list of all accounts that are made in the bank
      */
-    public static Account searchAccount(Bank bank, int id) {
+    public static Account searchAccount(Bank bank, int id) throws InvalidAccountException{
         if (bank.accountList.containsKey(id)) {
             return bank.accountList.get(id);
+        }else {
+            throw new InvalidAccountException();
         }
-        return null;
     }
 
     /***
@@ -70,11 +84,13 @@ public class AccountUtility {
      * @param account The account object from which amount has to debited
      * @return true if account has sufficient balance to be debited, else return false
      */
-    public static boolean debit(int amount, Account account) {
+    public static boolean debit(int amount, Account account) throws InsufficientFundException {
         if (account.getRemainingBalance() >= amount) {
             account.setRemainingBalance(account.getRemainingBalance() - amount);
             return true;
         }
-        return false;
+        else {
+            throw new InsufficientFundException();
+        }
     }
 }

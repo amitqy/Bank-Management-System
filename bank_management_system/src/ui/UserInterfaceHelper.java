@@ -3,6 +3,7 @@ package ui;
 import bank.Bank;
 import exception.InsufficientFundException;
 import exception.InvalidAccountException;
+import exception.InvalidOptionException;
 import model.Account;
 import util.AccountUtility;
 
@@ -17,6 +18,7 @@ public class UserInterfaceHelper {
     public static final String OPTION2 = "2 -> already existing account";
     public static final String OPTION3 = "3 -> search for account";
     public static final String OPTION4 = "4 -> exit";
+    public static final String ALPHABET_PATTERN = "^[a-zA-Z]+$";
     public static final String ACCOUNT_SEARCH_TEXT = "Enter the account id you want to search";
     public static final String ACCOUNT_DOES_NOT_EXIST_TEXT = "This account does not exist !Please create a new account";
     public static final String ENTER_YOUR_NAME_TEXT = "Enter your name";
@@ -44,16 +46,10 @@ public class UserInterfaceHelper {
         System.out.println("Your balance is " + ac.getRemainingBalance());
         System.out.println(MONEY_DEBIT_PROMPT_TEXT);
         int id = s.nextInt();
-        if (!AccountUtility.debit(id, ac)) {
-            try{
-                throw new InsufficientFundException();
-            }
-            catch(Exception e) {
-                System.out.println(e.getMessage());
-                e.printStackTrace();
-            }
-        } else {
-            System.out.println(DEBIT_SUCCESSFUL_TEXT);
+        try {
+            AccountUtility.debit(id, ac);
+        } catch (InsufficientFundException e) {
+            e.printStackTrace();
         }
     }
 
@@ -61,14 +57,69 @@ public class UserInterfaceHelper {
     public static void takeInputForCredit(Account ac, Bank bank) {
         System.out.println(MONEY_CREDIT_PROMPT_TEXT);
         int amount = s.nextInt();
-        AccountUtility.credit(amount,ac);
+        AccountUtility.credit(amount, ac);
     }
-    public static void printWelcomeOptions(){
+
+    public static void printWelcomeOptions() {
         System.out.println(OPTION1);
         System.out.println(OPTION2);
         System.out.println(OPTION3);
         System.out.println(OPTION4);
     }
 
+    /***
+     * @param bankOne bank object
+     */
+    public static void accountSearchHelper(Bank bankOne) {
+        System.out.println(UserInterfaceHelper.ACCOUNT_SEARCH_TEXT);
+        Scanner s = new Scanner(System.in);
+        int id = s.nextInt();
+        try {
+            Account accountObj = AccountUtility.searchAccount(bankOne, id);
+            AccountUtility.printDetails(accountObj);
+        } catch (InvalidAccountException e) {
+             e.getMessage();
+             e.printStackTrace();
+        }
+    }
+
+    /***
+     * @param bankOne bank object
+     */
+    public static void alreadyExistingAccountHelper(Bank bankOne)  {
+        System.out.println(UserInterfaceHelper.PROMPT_FOR_ID_INPUT);
+        Scanner s = new Scanner(System.in);
+        int id = s.nextInt();
+        try{
+        Account accountObj = AccountUtility.searchAccount(bankOne, id);
+            printTextForOption3();
+            int option = s.nextInt();
+            switch (option) {
+                case 21:
+                    takeInputForCredit(accountObj, bankOne);
+                    break;
+                case 22:
+                    takeInputForDebit(accountObj, bankOne);
+                    break;
+                case 23:
+                    AccountUtility.printDetails(accountObj);
+                    break;
+                default:
+                    System.out.println(UserInterfaceHelper.INVALID_OPTION_TEXT);
+                    break;
+            }
+        } catch (InvalidAccountException e){
+            e.getMessage();
+            e.printStackTrace();
+        }
+    }
+    public static int optionValidator() throws InvalidOptionException {
+        UserInterfaceHelper.printWelcomeOptions();
+        int status = s.nextInt();
+        if(status >= 5){
+            throw new InvalidOptionException();
+        }
+        return status;
+    }
 
 }
