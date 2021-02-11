@@ -12,6 +12,8 @@ import java.awt.desktop.SystemEventListener;
 import java.security.spec.ECField;
 import java.util.HashMap;
 import java.util.Scanner;
+import java.util.logging.LogManager;
+import java.util.logging.Logger;
 
 /***
  * Represents a Bank

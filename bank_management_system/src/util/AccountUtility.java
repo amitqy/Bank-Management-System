@@ -9,6 +9,7 @@ import model.Account;
 import ui.UserInterfaceHelper;
 
 import java.util.Scanner;
+import java.util.logging.Level;
 
 public class AccountUtility {
     static String name;
@@ -28,11 +29,11 @@ public class AccountUtility {
      */
     public static Account makeNewAccount() throws WrongInputNameException {
         Scanner s = new Scanner(System.in);
-        System.out.println(UserInterfaceHelper.ENTER_YOUR_NAME_TEXT);
+        UserInterfaceHelper.log.log(Level.INFO, UserInterfaceHelper.ENTER_YOUR_NAME_TEXT);
         name = s.next();
         if(nameValidated(name)) {
             id = getAccountId();
-            System.out.println(UserInterfaceHelper.SAVE_FOR_FUTURE_TEXT + id);
+            UserInterfaceHelper.log.log(Level.INFO, UserInterfaceHelper.SAVE_FOR_FUTURE_TEXT + id);
             return new Account(name, id);
         }
         else {
@@ -48,11 +49,9 @@ public class AccountUtility {
      * @param accountObject : The account object
      */
     public static void printDetails(Account accountObject) {
-        System.out.println("Name: " + accountObject.getName());
-        System.out.println("Id: " + accountObject.getId(
-
-        ));
-        System.out.println("Remaining balance: " + accountObject.getRemainingBalance());
+        UserInterfaceHelper.log.log(Level.INFO, "Name: " + accountObject.getName());
+        UserInterfaceHelper.log.log(Level.INFO, "Id: " + accountObject.getId());
+        UserInterfaceHelper.log.log(Level.INFO, "Remaining balance: " + accountObject.getRemainingBalance());
     }
 
     /***

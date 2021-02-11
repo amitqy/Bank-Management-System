@@ -8,6 +8,9 @@ import model.Account;
 import util.AccountUtility;
 
 import java.util.Scanner;
+import java.util.logging.Level;
+import java.util.logging.LogManager;
+import java.util.logging.Logger;
 
 /***
  * Class used for handling all user interface related elements
@@ -33,18 +36,22 @@ public class UserInterfaceHelper {
     public static final String DEBIT_SUCCESSFUL_TEXT = "Debit successful";
     public static final String INVALID_OPTION_TEXT = "Option is Invalid";
     public static final String INVALID_MONEY_INPUT = "Money Entered is Invalid";
+    public static final LogManager logManager = LogManager.getLogManager();
+    public static final Logger log = logManager.getLogger(Logger.GLOBAL_LOGGER_NAME);
+
 
     static Scanner s = new Scanner(System.in);
 
+
     public static void printTextForOption3() {
-        System.out.println(CREDIT_PROMPT_TEXT);
-        System.out.println(DEBIT_PROMPT_TEXT);
-        System.out.println(ACCOUNT_DETAILS_PROMPT_TEXT);
+        log.log(Level.INFO, CREDIT_PROMPT_TEXT);
+        log.log(Level.INFO, DEBIT_PROMPT_TEXT);
+        log.log(Level.INFO, ACCOUNT_DETAILS_PROMPT_TEXT);
     }
 
     public static void takeInputForDebit(Account ac, Bank bank) {
-        System.out.println("Your balance is " + ac.getRemainingBalance());
-        System.out.println(MONEY_DEBIT_PROMPT_TEXT);
+        log.log(Level.INFO, "Your balance is " + ac.getRemainingBalance());
+        log.log(Level.INFO, MONEY_DEBIT_PROMPT_TEXT);
         int id = s.nextInt();
         try {
             AccountUtility.debit(id, ac);
@@ -55,23 +62,23 @@ public class UserInterfaceHelper {
 
 
     public static void takeInputForCredit(Account ac, Bank bank) {
-        System.out.println(MONEY_CREDIT_PROMPT_TEXT);
+        log.log(Level.INFO, MONEY_CREDIT_PROMPT_TEXT);
         int amount = s.nextInt();
         AccountUtility.credit(amount, ac);
     }
 
     public static void printWelcomeOptions() {
-        System.out.println(OPTION1);
-        System.out.println(OPTION2);
-        System.out.println(OPTION3);
-        System.out.println(OPTION4);
+        log.log(Level.INFO, OPTION1);
+        log.log(Level.INFO, OPTION2);
+        log.log(Level.INFO, OPTION3);
+        log.log(Level.INFO, OPTION4);
     }
 
     /***
      * @param bankOne bank object
      */
     public static void accountSearchHelper(Bank bankOne) {
-        System.out.println(UserInterfaceHelper.ACCOUNT_SEARCH_TEXT);
+        log.log(Level.INFO,ACCOUNT_SEARCH_TEXT);
         Scanner s = new Scanner(System.in);
         int id = s.nextInt();
         try {
@@ -87,7 +94,7 @@ public class UserInterfaceHelper {
      * @param bankOne bank object
      */
     public static void alreadyExistingAccountHelper(Bank bankOne)  {
-        System.out.println(UserInterfaceHelper.PROMPT_FOR_ID_INPUT);
+        log.log(Level.INFO,PROMPT_FOR_ID_INPUT);
         Scanner s = new Scanner(System.in);
         int id = s.nextInt();
         try{
@@ -105,7 +112,7 @@ public class UserInterfaceHelper {
                     AccountUtility.printDetails(accountObj);
                     break;
                 default:
-                    System.out.println(UserInterfaceHelper.INVALID_OPTION_TEXT);
+                    log.log(Level.WARNING,INVALID_OPTION_TEXT);
                     break;
             }
         } catch (InvalidAccountException e){
