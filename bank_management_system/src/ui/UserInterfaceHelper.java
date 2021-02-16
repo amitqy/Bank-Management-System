@@ -75,6 +75,7 @@ public class UserInterfaceHelper {
         log.log(Level.INFO, OPTION2);
         log.log(Level.INFO, OPTION3);
         log.log(Level.INFO, OPTION4);
+        log.log(Level.INFO,"Read from file");
     }
 
     /***
