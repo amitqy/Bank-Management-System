@@ -51,6 +51,7 @@ public class Bank {
                     case 3:
                         UserInterfaceHelper.accountSearchHelper(bankOne);
                         break;
+                    // 5 -> take input of file
                     case 5: UserInterfaceHelper.takeInputFromFile(bankOne);
                         break;
                     default:
