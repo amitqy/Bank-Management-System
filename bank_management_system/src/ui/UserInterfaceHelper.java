@@ -4,9 +4,12 @@ import bank.Bank;
 import exception.InsufficientFundException;
 import exception.InvalidAccountException;
 import exception.InvalidOptionException;
+import exception.WrongInputNameException;
 import model.Account;
 import util.AccountUtility;
 
+import java.io.*;
+import java.util.Properties;
 import java.util.Scanner;
 import java.util.logging.Level;
 import java.util.logging.LogManager;
@@ -123,10 +126,34 @@ public class UserInterfaceHelper {
     public static int optionValidator() throws InvalidOptionException {
         UserInterfaceHelper.printWelcomeOptions();
         int status = s.nextInt();
-        if(status >= 5){
+        if(status >= 6){
             throw new InvalidOptionException();
         }
         return status;
+    }
+    public static void takeInputFromFile(Bank bankOne){
+        Properties p = new Properties();
+        try {
+            OutputStream os = new FileOutputStream("dataConfig.properties");
+            p.setProperty("Name","Amit Padaliya");
+            Integer id = AccountUtility.getAccountId();
+            p.setProperty("Id",id.toString());
+            Account ac = new Account(p.getProperty("Name"),Integer.parseInt(p.getProperty("Id")));
+            p.setProperty("credit","6000");
+            p.setProperty("debit","2000");
+            p.store(os,null);
+            InputStream is = new FileInputStream("dataConfig.properties");
+            p.load(is);
+            bankOne.accountList.put(Integer.parseInt(p.getProperty("Id")),ac);
+            AccountUtility.credit(Integer.parseInt(p.getProperty("credit")),ac);
+            AccountUtility.debit(Integer.parseInt(p.getProperty("debit")),ac);
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (InsufficientFundException e) {
+            e.printStackTrace();
+        }
     }
 
 }

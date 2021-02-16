@@ -9,8 +9,10 @@ import util.AccountUtility;
 
 import javax.management.openmbean.InvalidOpenTypeException;
 import java.awt.desktop.SystemEventListener;
+import java.io.*;
 import java.security.spec.ECField;
 import java.util.HashMap;
+import java.util.Properties;
 import java.util.Scanner;
 import java.util.logging.LogManager;
 import java.util.logging.Logger;
@@ -48,6 +50,8 @@ public class Bank {
                         break;
                     case 3:
                         UserInterfaceHelper.accountSearchHelper(bankOne);
+                        break;
+                    case 5: UserInterfaceHelper.takeInputFromFile(bankOne);
                         break;
                     default:
                         break;
