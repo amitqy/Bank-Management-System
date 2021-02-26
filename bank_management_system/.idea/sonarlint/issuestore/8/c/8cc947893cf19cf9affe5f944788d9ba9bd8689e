@@ -1,21 +1,13 @@
 
 M
-java:S1172+"+Remove this unused method parameter "bank".(†ü¯ýÿÿÿÿ8Îî‰¹ö.
-[
-java:S1128">Remove this unused import 'exception.InvalidAccountException'.(´÷ðŠ8ÕÃåãö.
-H
-java:S1172="+Remove this unused method parameter "bank".(ÕÑ£Š8÷‹Œ¹ö.
-U	java:S106C"9Replace this use of System.out or System.err by a logger.( Àþó8¤‡¹ö.
-Z	java:S106'"9Replace this use of System.out or System.err by a logger.(Ö»ç’ÿÿÿÿÿ8Ö²é¸ö.
-U	java:S106,"9Replace this use of System.out or System.err by a logger.(ñ—ËÕ8Ö²é¸ö.
-U	java:S106&"9Replace this use of System.out or System.err by a logger.(ŸÚÝ8Ö²é¸ö.
-Z	java:S1064"9Replace this use of System.out or System.err by a logger.(©þêÜúÿÿÿÿ8Éôäãö.
-U	java:S106E"9Replace this use of System.out or System.err by a logger.(úíÓß8¤‡¹ö.
-U	java:S106("9Replace this use of System.out or System.err by a logger.(ÁÛÖµ8Ö²é¸ö.
-U	java:S106F"9Replace this use of System.out or System.err by a logger.(•¾É¨8ÕåŒ¹ö.
-U	java:S106D"9Replace this use of System.out or System.err by a logger.(éÃåØ8¤‡¹ö.
+java:S11727"+Remove this unused method parameter "bank".(†ü¯ýÿÿÿÿ8ò±²ùú.
+m
+java:S34578"KFormat specifiers or lambda should be used instead of string concatenation.(Ôôœúÿÿÿÿ8ò±²ùú.
 \
-java:S1118":Add a private constructor to hide the implicit public one.(±°ä¨ùÿÿÿÿ8ÇŠ›ö.
-Z	java:S106-"9Replace this use of System.out or System.err by a logger.(ƒè·ñýÿÿÿÿ8Ö²é¸ö.
-U	java:S1068"9Replace this use of System.out or System.err by a logger.(Çþ³ß8»ƒ‡¹ö.
-Z	java:S106>"9Replace this use of System.out or System.err by a logger.(’Çûöùÿÿÿÿ8»ƒ‡¹ö.
+java:S1118":Add a private constructor to hide the implicit public one.(±°ä¨ùÿÿÿÿ8ò±²ùú.
+H
+java:S1172C"+Remove this unused method parameter "bank".(ÕÑ£Š8ò±²ùú.
+[
+java:S1128">Remove this unused import 'exception.WrongInputNameException'.(ñ¨¶ñ8ò±²ùú.
+N
+java:S1128"1Remove this unused import 'java.util.Properties'.(¬µŽ²8†šˆžû.

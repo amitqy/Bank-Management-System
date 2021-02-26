@@ -4,12 +4,9 @@ import bank.Bank;
 import exception.InsufficientFundException;
 import exception.InvalidAccountException;
 import exception.InvalidOptionException;
-import exception.WrongInputNameException;
 import model.Account;
 import util.AccountUtility;
 
-import java.io.*;
-import java.util.Properties;
 import java.util.Scanner;
 import java.util.logging.Level;
 import java.util.logging.LogManager;
@@ -20,10 +17,13 @@ import java.util.logging.Logger;
  */
 
 public class UserInterfaceHelper {
-    public static final String OPTION1 = "1 -> make a new account";
-    public static final String OPTION2 = "2 -> already existing account";
-    public static final String OPTION3 = "3 -> search for account";
-    public static final String OPTION4 = "4 -> exit";
+    public static final String CONSOLE_OPTION1 = "1 -> make a new account";
+    public static final String CONSOLE_OPTION2 = "2 -> already existing account";
+    public static final String CONSOLE_OPTION3 = "3 -> search for account";
+    public static final String CONSOLE_OPTION4 = "4 -> exit from console input";
+    public static final String START_OPTION1 = "FOR CONSOLE INPUT PRESS 1";
+    public static final String START_OPTION2 = "FOR FILE INPUT PRESS 2";
+    public static final String START_OPTION3 = "TO EXIT PRESS ANY OTHER NUMBER";
     public static final String ALPHABET_PATTERN = "^[a-zA-Z]+$";
     public static final String ACCOUNT_SEARCH_TEXT = "Enter the account id you want to search";
     public static final String ACCOUNT_DOES_NOT_EXIST_TEXT = "This account does not exist !Please create a new account";
@@ -46,7 +46,7 @@ public class UserInterfaceHelper {
     static Scanner s = new Scanner(System.in);
 
 
-    public static void printTextForOption3() {
+    public static void printTextForConsoleOption3() {
         log.log(Level.INFO, CREDIT_PROMPT_TEXT);
         log.log(Level.INFO, DEBIT_PROMPT_TEXT);
         log.log(Level.INFO, ACCOUNT_DETAILS_PROMPT_TEXT);
@@ -71,11 +71,10 @@ public class UserInterfaceHelper {
     }
 
     public static void printWelcomeOptions() {
-        log.log(Level.INFO, OPTION1);
-        log.log(Level.INFO, OPTION2);
-        log.log(Level.INFO, OPTION3);
-        log.log(Level.INFO, OPTION4);
-        log.log(Level.INFO,"Read from file");
+        log.log(Level.INFO, CONSOLE_OPTION1);
+        log.log(Level.INFO, CONSOLE_OPTION2);
+        log.log(Level.INFO, CONSOLE_OPTION3);
+        log.log(Level.INFO, CONSOLE_OPTION4);
     }
 
     /***
@@ -103,7 +102,7 @@ public class UserInterfaceHelper {
         int id = s.nextInt();
         try{
         Account accountObj = AccountUtility.searchAccount(bankOne, id);
-            printTextForOption3();
+            printTextForConsoleOption3();
             int option = s.nextInt();
             switch (option) {
                 case 21:
@@ -132,29 +131,6 @@ public class UserInterfaceHelper {
         }
         return status;
     }
-    public static void takeInputFromFile(Bank bankOne){
-        Properties p = new Properties();
-        try {
-            OutputStream os = new FileOutputStream("dataConfig.properties");
-            p.setProperty("Name","Amit Padaliya");
-            Integer id = AccountUtility.getAccountId();
-            p.setProperty("Id",id.toString());
-            Account ac = new Account(p.getProperty("Name"),Integer.parseInt(p.getProperty("Id")));
-            p.setProperty("credit","6000");
-            p.setProperty("debit","2000");
-            p.store(os,null);
-            InputStream is = new FileInputStream("dataConfig.properties");
-            p.load(is);
-            bankOne.accountList.put(Integer.parseInt(p.getProperty("Id")),ac);
-            AccountUtility.credit(Integer.parseInt(p.getProperty("credit")),ac);
-            AccountUtility.debit(Integer.parseInt(p.getProperty("debit")),ac);
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
-        } catch (InsufficientFundException e) {
-            e.printStackTrace();
-        }
-    }
+
 
 }

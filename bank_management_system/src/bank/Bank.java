@@ -1,21 +1,13 @@
 package bank;
 
-import exception.InvalidAccountException;
-import exception.InvalidOptionException;
-import exception.WrongInputNameException;
+import input.ConsoleInput;
+import input.FileReader;
 import model.Account;
 import ui.UserInterfaceHelper;
-import util.AccountUtility;
 
-import javax.management.openmbean.InvalidOpenTypeException;
-import java.awt.desktop.SystemEventListener;
-import java.io.*;
-import java.security.spec.ECField;
 import java.util.HashMap;
-import java.util.Properties;
 import java.util.Scanner;
-import java.util.logging.LogManager;
-import java.util.logging.Logger;
+import java.util.logging.Level;
 
 /***
  * Represents a Bank
@@ -28,40 +20,26 @@ public class Bank {
     }
 
     public static void main(String[] args) {
-        int status;
         Bank bankOne = new Bank();
+        Scanner inputScanner = new Scanner(System.in);
         while (true) {
-            try {
-                status = UserInterfaceHelper.optionValidator();
-                if (status == 4) break;
-                switch (status) {
-                    // 1 -> make a new account
-                    case 1:
-                        try {
-                            Account accountObj = AccountUtility.makeNewAccount();
-                            bankOne.accountList.put(accountObj.getId(), accountObj);
-                        } catch (WrongInputNameException e) {
-                            e.printStackTrace();
-                        }
-                        break;
-                    // 2 -> already existing account
-                    case 2:
-                        UserInterfaceHelper.alreadyExistingAccountHelper(bankOne);
-                        break;
-                    case 3:
-                        UserInterfaceHelper.accountSearchHelper(bankOne);
-                        break;
-                    // 5 -> take input of file
-                    case 5: UserInterfaceHelper.takeInputFromFile(bankOne);
-                        break;
-                    default:
-                        break;
-                }
-            } catch (InvalidOptionException e) {
-                  e.getMessage();
-                  e.printStackTrace();
+            UserInterfaceHelper.log.log(Level.INFO,UserInterfaceHelper.START_OPTION1);
+            UserInterfaceHelper.log.log(Level.INFO,UserInterfaceHelper.START_OPTION2);
+            UserInterfaceHelper.log.log(Level.INFO,UserInterfaceHelper.START_OPTION3);
+            int userOption = inputScanner.nextInt();
+            if (userOption == 1) {
+                ConsoleInput consoleInput = new ConsoleInput();
+                consoleInput.read(bankOne);
+
+            } else if(userOption == 2) {
+                FileReader fileInput = new FileReader();
+                fileInput.read(bankOne);
+            }
+            else{
+                break;
             }
         }
+
     }
 
 }

@@ -1,9 +1,18 @@
 
-U	java:S106("9Replace this use of System.out or System.err by a logger.(âÅí°8€è¬™ö.
-U	java:S106"9Replace this use of System.out or System.err by a logger.(ù£Ä•8¼Ö¿åö.
+m
+java:S3457$"KFormat specifiers or lambda should be used instead of string concatenation.(Òáğ™øÿÿÿÿ8œêùú.
+Y
+java:S2629$"7Use the built-in formatting to construct this argument.(Òáğ™øÿÿÿÿ8œêùú.
+m
+java:S34574"KFormat specifiers or lambda should be used instead of string concatenation.(¦Ûçàşÿÿÿÿ8œêùú.
+F
+java:S2140")Use "java.util.Random.nextInt()" instead.(²™¡˜8œêùú.
+Z	java:S106L"9Replace this use of System.out or System.err by a logger.(ÿÄÈúÿÿÿÿ8ÙÃÁŸú.
+m
+java:S34575"KFormat specifiers or lambda should be used instead of string concatenation.(òæáûÿÿÿÿ8œêùú.
 W
-java:S1118	":Add a private constructor to hide the implicit public one.(»ğã–8ë¶‰¹ö.
-Z	java:S106)"9Replace this use of System.out or System.err by a logger.(ìİ±œúÿÿÿÿ8¼Ö¿åö.
-Z	java:S106,"9Replace this use of System.out or System.err by a logger.(‰ôÿÜøÿÿÿÿ8¼Ö¿åö.
-Z	java:S106C"9Replace this use of System.out or System.err by a logger.(ÿÄÈúÿÿÿÿ8¾Ëåö.
-U	java:S106"9Replace this use of System.out or System.err by a logger.(Š¬Çş8¼Ö¿åö.
+java:S1118":Add a private constructor to hide the implicit public one.(»ğã–8·Õ›Ûø.
+_
+java:S1128"=Remove this unused import 'exception.InvalidOptionException'.(Äÿâ‰üÿÿÿÿ8çü¥Ôø.
+h
+java:S34576"KFormat specifiers or lambda should be used instead of string concatenation.(€Ÿ¡½8œêùú.
